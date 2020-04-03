@@ -9,6 +9,7 @@ var box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, b
 var sling;
 var ball1;
 var gr1,gr2,gr3,gr4,gr5;
+var score = 0;
 
 
 function setup(){
@@ -28,23 +29,23 @@ function setup(){
 
     box1 = new Box(620,450,50,50);
     box2 = new Box(670,450,50,50);
-    box3 = new Box(645,200,50,50);
+    box3 = new Box(645,410,50,50);
 
-    box4 = new Box(1070,100,50,50);
-    box5 = new Box(1120,100,50,50);
-    box6 = new Box(1095,50,50,50);
+    box4 = new Box(1070,200,50,50);
+    box5 = new Box(1120,200,50,50);
+    box6 = new Box(1095,160,50,50);
 
     box7 = new Box(870,330,50,50);
     box8 = new Box(920,330,50,50);
-    box9 = new Box(895,230,50,50);
+    box9 = new Box(895,290,50,50);
 
     box10 = new Box(470,250,50,50);
     box11 = new Box(520,250,50,50);
-    box12 = new Box(495,0,50,50);
+    box12 = new Box(495,210,50,50);
 
-    box13 = new Box(750,100,50,50);
-    box14= new Box(800,100,50,50);
-    box15 = new Box(775,50,50,50);
+    box13 = new Box(750,120,50,50);
+    box14= new Box(800,120,50,50);
+    box15 = new Box(775,90,50,50);
 
 
     sling = new SlingShot(ball1.body, {x:120, y:480});
@@ -54,11 +55,16 @@ function draw(){
     background("pink");
     Engine.update(engine);
 
-    textSize(18);
-    fill(0);
+    noStroke();
+    textSize(35)
+    fill("white");
+
+    text("Score:" + score, width-300, 50)
     text("Press space to reattach the ball", 200, 50);
  
 
+
+    fill("grey");
     gr1.display();
     gr2.display();
     gr3.display();
