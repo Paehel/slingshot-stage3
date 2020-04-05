@@ -3,6 +3,9 @@ class Box extends BaseClass{
         super(x,y,50,50);
         this.image = loadImage("box.png");
         this.Visiblity = 255;
+        if(gameState === "Win" || gameState === "Lose"){
+          this.body.isStatic = true;
+        }
       }
     
      display(){

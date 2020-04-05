@@ -24,7 +24,7 @@ keyPressed(){
     if(keyCode === 32){
         let colours = ["red","yellow","green","blue","black","purple","white","grey"];
         let colour = random(colours);
-        fill(colour);
+       this.body.shapeColor = "colour";
     }
 }
 }

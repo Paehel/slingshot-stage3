@@ -135,6 +135,10 @@ function keyPressed(){
 
         Matter.Body.setPosition(ball1.body, {x:50,  y:350}  );
        sling.attach(ball1.body);
+
+       let colours = ["red","yellow","green","blue","purple","white","grey"];
+       let colour = random(colours);
+       ball1.shapeColor = "colour";
     }
 }
 
