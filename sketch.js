@@ -9,7 +9,9 @@ var box1, box2, box3, box4, box5, box6, box7, box8, box9, box10, box11, box12, b
 var sling;
 var ball1;
 var gr1,gr2,gr3,gr4,gr5;
+var gameState = Play;
 var score = 0;
+var timer = 250;
 
 
 function setup(){
@@ -25,7 +27,7 @@ function setup(){
 
   
 
-    ball1 = new Ball(30,400,25);
+    ball1 = new Ball(50,350,25);
 
     box1 = new Box(620,450,50,50);
     box2 = new Box(670,450,50,50);
@@ -58,10 +60,15 @@ function draw(){
     noStroke();
     textSize(35)
     fill("white");
-
-    text("Score:" + score, width-300, 50)
     text("Press space to reattach the ball", 200, 50);
- 
+
+push();
+    text("Score:" + score, width-300, 50)
+  
+
+    fill(0)
+    text("Time Left:" + timer,50,100 );
+ pop();
 
 
     fill("grey");
@@ -73,6 +80,7 @@ function draw(){
    
 
     ball1.display();
+    
    
     box1.display();
     box2.display();
@@ -122,8 +130,50 @@ function mouseReleased(){
 
 function keyPressed(){
     if(keyCode === 32){
-        Matter.Body.setPosition(ball1.body, {x:30,  y:400}  );
+        World.remove(world, ball1.body);
+        ball1 = new Ball(200,200,30,30);
+
+        Matter.Body.setPosition(ball1.body, {x:50,  y:350}  );
        sling.attach(ball1.body);
     }
 }
 
+ if(gameState === "Play" && timer > 0){
+    timer --;
+}
+
+
+if(timer > 0 && score>2000 && gameState === "Play"){
+    gameState = "Win";
+}
+
+if(timer === 0 && score>2000 && gameState === "Play"){
+    gameState = "Win";
+}``
+
+if(gameState === "Win"){
+    GameOver();
+}
+
+if(timer === 0 && score<2000 && gameState === "Play"){
+    gameState = "Lose";
+}
+if(gameState === "Lose"){
+    GameOver();
+}
+
+
+function GameOver(){
+        if(gameState === "Win"){
+         textSize(35)
+         fill("blue");
+         text("You win!!!", 70,360);
+         
+     }
+     if(gameState === "Lose"){
+        textSize(35)
+        fill("red");
+         text("You Lose!!", 70, 360);
+         text("Try Harder Next Time",90,380);
+     }
+    }
